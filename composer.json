@@ -1,0 +1,28 @@
+{
+  "name": "phpsagas/common",
+  "type": "library",
+  "description": "Common classes used by saga participants",
+  "keywords": ["sagas"],
+  "homepage": "https://github.com/phpsagas/common",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Oleg Filatov",
+      "email": "phpsagas@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1 || ^8.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "PhpSagas\\Common\\": "src/"
+    }
+  },
+  "scripts": {
+    "cs": "./vendor/bin/phpcs"
+  }
+}
