@@ -1,0 +1,13 @@
+version: "3"
+services:
+    php-sagas-common:
+        build:
+            context: ./resources/docker
+            args:
+                - DOCKER_USER
+                - UID
+        container_name: php-sagas-common
+        hostname: php-sagas-common
+        restart: on-failure
+        volumes:
+            - .:/var/www
