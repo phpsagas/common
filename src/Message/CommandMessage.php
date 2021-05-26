@@ -2,12 +2,14 @@
 
 namespace PhpSagas\Common\Message;
 
+use PhpSagas\Contracts\CommandMessageInterface;
+
 /**
  * Command message sending for remote command execution.
  *
  * @author Oleg Filatov <phpsagas@gmail.com>
  */
-class CommandMessage
+class CommandMessage implements CommandMessageInterface
 {
     /** @var string */
     protected $id;
@@ -93,9 +95,9 @@ class CommandMessage
      * @param string $key
      * @param string $value
      *
-     * @return CommandMessage
+     * @return CommandMessageInterface
      */
-    public function setHeader(string $key, string $value): CommandMessage
+    public function setHeader(string $key, string $value): CommandMessageInterface
     {
         $this->headers[$key] = $value;
         return $this;
@@ -104,9 +106,9 @@ class CommandMessage
     /**
      * @param string[] $headers
      *
-     * @return CommandMessage
+     * @return CommandMessageInterface
      */
-    public function setHeaders(array $headers): CommandMessage
+    public function setHeaders(array $headers): CommandMessageInterface
     {
         $this->headers = $headers;
         return $this;

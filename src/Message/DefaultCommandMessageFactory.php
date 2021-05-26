@@ -2,6 +2,9 @@
 
 namespace PhpSagas\Common\Message;
 
+use PhpSagas\Contracts\CommandMessageFactoryInterface;
+use PhpSagas\Contracts\CommandMessageInterface;
+
 /**
  * Default factory implementation.
  *
@@ -18,7 +21,7 @@ class DefaultCommandMessageFactory implements CommandMessageFactoryInterface
         string $sagaType,
         string $commandType,
         string $payload
-    ): CommandMessage {
+    ): CommandMessageInterface {
         return new CommandMessage($messageId, $payload, $sagaId, $sagaType, $commandType);
     }
 }

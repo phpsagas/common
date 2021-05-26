@@ -2,7 +2,8 @@
 
 namespace PhpSagas\Common\AMQP;
 
-use PhpSagas\Common\Message\CommandMessage;
+use PhpSagas\Contracts\CommandMessageInterface;
+use PhpSagas\Contracts\RoutingKeyMapperInterface;
 
 /**
  * Transforms routing keys based on command type.
@@ -11,12 +12,12 @@ use PhpSagas\Common\Message\CommandMessage;
  */
 class CommandTypeBasedRoutingKeyMapper implements RoutingKeyMapperInterface
 {
-    public function transformRoutingKey(CommandMessage $message): string
+    public function transformRoutingKey(CommandMessageInterface $message): string
     {
         return $message->getCommandType();
     }
 
-    public function transformReplyRoutingKey(CommandMessage $message): string
+    public function transformReplyRoutingKey(CommandMessageInterface $message): string
     {
         return 'command_reply';
     }

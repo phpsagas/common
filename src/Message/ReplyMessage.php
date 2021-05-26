@@ -2,12 +2,14 @@
 
 namespace PhpSagas\Common\Message;
 
+use PhpSagas\Contracts\ReplyMessageInterface;
+
 /**
  * Reply message returning after remote command execution finished.
  *
  * @author Oleg Filatov <phpsagas@gmail.com>
  */
-class ReplyMessage
+class ReplyMessage implements ReplyMessageInterface
 {
     /** @var string */
     private const SUCCESS = 'SUCCESS';
@@ -30,9 +32,9 @@ class ReplyMessage
     /**
      * @param string $sagaId
      *
-     * @return ReplyMessage
+     * @return ReplyMessageInterface
      */
-    public static function makeEmptySuccess(string $sagaId): ReplyMessage
+    public static function makeEmptySuccess(string $sagaId): ReplyMessageInterface
     {
         return self::makeSuccess('', '{}', $sagaId, '');
     }
@@ -43,19 +45,23 @@ class ReplyMessage
      * @param string $sagaId
      * @param string $correlationId
      *
-     * @return ReplyMessage
+     * @return ReplyMessageInterface
      */
-    public static function makeSuccess(string $id, string $payload, string $sagaId, string $correlationId): self
-    {
+    public static function makeSuccess(
+        string $id,
+        string $payload,
+        string $sagaId,
+        string $correlationId
+    ): ReplyMessageInterface {
         return new self($id, $payload, $sagaId, $correlationId, self::SUCCESS);
     }
 
     /**
      * @param string $sagaId
      *
-     * @return ReplyMessage
+     * @return ReplyMessageInterface
      */
-    public static function makeEmptyFailure(string $sagaId): ReplyMessage
+    public static function makeEmptyFailure(string $sagaId): ReplyMessageInterface
     {
         return self::makeFailure('', '{}', $sagaId, '');
     }
@@ -66,10 +72,14 @@ class ReplyMessage
      * @param string $sagaId
      * @param string $correlationId
      *
-     * @return ReplyMessage
+     * @return ReplyMessageInterface
      */
-    public static function makeFailure(string $id, string $payload, string $sagaId, string $correlationId): self
-    {
+    public static function makeFailure(
+        string $id,
+        string $payload,
+        string $sagaId,
+        string $correlationId
+    ): ReplyMessageInterface {
         return new self($id, $payload, $sagaId, $correlationId, self::FAILURE);
     }
 
@@ -146,9 +156,9 @@ class ReplyMessage
      * @param string $key
      * @param string $value
      *
-     * @return ReplyMessage
+     * @return ReplyMessageInterface
      */
-    public function setHeader(string $key, string $value): ReplyMessage
+    public function setHeader(string $key, string $value): ReplyMessageInterface
     {
         $this->headers[$key] = $value;
         return $this;
@@ -157,9 +167,9 @@ class ReplyMessage
     /**
      * @param string[] $headers
      *
-     * @return ReplyMessage
+     * @return ReplyMessageInterface
      */
-    public function setHeaders(array $headers): ReplyMessage
+    public function setHeaders(array $headers): ReplyMessageInterface
     {
         $this->headers = $headers;
         return $this;

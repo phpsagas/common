@@ -2,7 +2,8 @@
 
 namespace PhpSagas\Common\AMQP;
 
-use PhpSagas\Common\Message\CommandMessage;
+use PhpSagas\Contracts\CommandMessageInterface;
+use PhpSagas\Contracts\ExchangeMapperInterface;
 
 /**
  * Transforms exchange names based on saga type.
@@ -14,7 +15,7 @@ class SagaTypeBasedExchangeMapper implements ExchangeMapperInterface
     /**
      * @inheritDoc
      */
-    public function transformExchange(CommandMessage $message): string
+    public function transformExchange(CommandMessageInterface $message): string
     {
         return $message->getSagaType();
     }
@@ -22,7 +23,7 @@ class SagaTypeBasedExchangeMapper implements ExchangeMapperInterface
     /**
      * @inheritDoc
      */
-    public function transformReplyExchange(CommandMessage $message): string
+    public function transformReplyExchange(CommandMessageInterface $message): string
     {
         return $message->getSagaType();
     }
