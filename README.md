@@ -8,7 +8,7 @@
 
 ## Requirements  
 - php: >= 7.1
-- [phpsagas/contracts](https://github.com/phpsagas/contracts)
+- [phpsagas/contracts](https://github.com/phpsagas/contracts): ^0.0
 
 ## About package
 This component is the part of [phpsagas framework](https://github.com/phpsagas).  
